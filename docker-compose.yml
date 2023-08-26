@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  gptmm:
+    tty: true
+    ipc: host
+    container_name: gptmm-dev
+    image: gptmm
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all # or device number (e.g. 0) to allow a single gpu
+    ports:
+      - "8080:8080" # port for JupyterLab (or JupyterNotebook)
+      - "6006:6006" # tensorborad/visdom port
+      - "5000:5000" # port for Flask
+    volumes:
+      - .:/workspaces/gptmm
+      - ${DATASETS}:/.datasets
+      - ${MODELS}/llms:/.models

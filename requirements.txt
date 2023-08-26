@@ -1,0 +1,22 @@
+numpy
+matplotlib
+graphviz
+six
+tqdm
+scipy
+visdom
+opencv-python
+scikit-image
+scikit-learn
+scikit-fmm
+pandas
+h5py
+jupyter
+jupyterlab
+flask==1.1.1
+gunicorn==20.0.4
+hydra-core
+transformers # for huggingface transformers <3 (to load GPT-2 checkpoints)
+datasets
+tiktoken
+wandb
