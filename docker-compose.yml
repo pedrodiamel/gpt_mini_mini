@@ -8,7 +8,7 @@ services:
     image: gptmm
     build:
       context: .
-      dockerfile: ./Dockerfile
+      dockerfile: ./docker/pytorch.Dockerfile
     runtime: nvidia
     environment:
       - NVIDIA_VISIBLE_DEVICES=all # or device number (e.g. 0) to allow a single gpu

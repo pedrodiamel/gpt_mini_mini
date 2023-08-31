@@ -28,7 +28,7 @@ requirements = open("requirements.txt").read()
 
 setup(
     # Metadata
-    name="nano",
+    name="gptmm",
     version=VERSION,
     author="pedrodiamel",
     author_email="pedrodiamel@gmail.com",

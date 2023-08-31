@@ -1,0 +1,41 @@
+# @package _global_
+hydra:
+  run:
+    dir: ${project.path}/${project.name_prefix}_${model.arch}_v${project.version}/${now:%Y-%m-%d}/${now:%H-%M-%S}
+project:
+  path: /.models/gptcourse
+  name_prefix: gptcourse
+  datatime: ${now:%Y-%m-%d}
+  version: 0.04
+data:
+  path: /.datasets/llms/
+  name_dataset: brasiliansong/input.txt
+  epochs: 5
+  batch_size: 512
+  workers: 4
+model:
+  arch: gpt2mm
+  block_size: 256
+  n_layers: 6
+  n_embd: 384
+  n_heads: 6
+  pretrained: False
+trainer:
+  lr: 0.0001
+  momentun: 0.9
+  cuda: True
+  gpu: 0
+  parallel: True
+  loss: cross
+  opt: adamw
+  grad_clip: 1.0
+  scheduler: step
+  compiler: False
+eval:
+  eval: True
+  test: True
+checkpoint:
+  resume: chk000000.pth.tar
+  verbose: True
+  print_freq: 300
+  snapshot: 1

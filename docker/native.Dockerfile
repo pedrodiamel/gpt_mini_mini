@@ -6,7 +6,7 @@ FROM nvidia/cuda:${CUDA_VERSION}-base-ubuntu${UBUNTU_VERSION}
 ARG DEBIAN_FRONTEND=noninteractive
 ENV PIP_ROOT_USER_ACTION=ignore
 
-ARG PYTHON_VERSION=3.8
+ARG PYTHON_VERSION=3.10
 # To use the default value of an ARG declared before the first FROM,
 # use an ARG instruction without a value inside of a build stage:
 ARG CUDA_VERSION

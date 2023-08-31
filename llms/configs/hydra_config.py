@@ -7,6 +7,7 @@ from omegaconf import MISSING
 @dataclass
 class ProjectConfig:
     path: str = MISSING
+    datatime: str = MISSING
     name_prefix: str = MISSING
     version: float = 0.01
 
@@ -18,14 +19,12 @@ class DataConfig:
     epochs: int = 10
     batch_size: int = 32
     workers: int = 3
-    auto_balance: bool = False
 
 
 @dataclass
 class ModelCheckpointConf:
     print_freq: int = 100
-    pretrained: bool = False
-    pretrained_path: str = MISSING
+    resume: str = MISSING
     snapshot: int = 5
     verbose: bool = True
 
@@ -33,14 +32,12 @@ class ModelCheckpointConf:
 @dataclass
 class ModelConfig:
     arch: str = MISSING
-    block_size: int = 1024
-    vocab_size: int = 50304  # GPT-2 vocab_size of 50257, padded up to nearest multiple of 64 for efficiency
-    n_layer: int = 12
-    n_head: int = 12
-    n_embd: int = 768
-    dropout: float = 0.0
+    block_size: int = 8
+    n_layers: int = 6
+    n_embd: int = 32
+    n_heads: int = 4
     bias: bool = True  # True: bias in Linears and LayerNorms, like GPT-2. False: a bit better and faster
-    finetuning: bool = False
+    pretrained: bool = False
 
 
 @dataclass
@@ -52,7 +49,15 @@ class TrainConfig:
     parallel: bool = False
     loss: str = MISSING
     opt: str = MISSING
+    grad_clip: float = 0.1
     scheduler: str = MISSING
+    compiler: bool = False
+
+
+@dataclass
+class EvalConfig:
+    eval: bool = False
+    test: bool = False
 
 
 @dataclass
@@ -64,9 +69,10 @@ class AugmentationConfig:
 
 @dataclass
 class Config:
-    project: ProjectConfig = ProjectConfig()
-    data: DataConfig = DataConfig()
-    model: ModelConfig = ModelConfig()
-    trainer: TrainConfig = TrainConfig()
-    checkpoint: ModelCheckpointConf = ModelCheckpointConf()
+    project: ProjectConfig = field(default_factory=ProjectConfig)
+    data: DataConfig = field(default_factory=DataConfig)
+    model: ModelConfig = field(default_factory=ModelConfig)
+    trainer: TrainConfig = field(default_factory=TrainConfig)
+    eval: EvalConfig = field(default_factory=EvalConfig)
+    checkpoint: ModelCheckpointConf = field(default_factory=ModelCheckpointConf)
     seed: int = 123456  # Seed for generators

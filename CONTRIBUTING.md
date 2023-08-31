@@ -63,7 +63,7 @@ Unit tests
 If you have modified the code by adding a new feature or a bug-fix, please add unit tests for that. To run a specific test:
 
 ```bash
-pytest test/<test-module.py> -vvv -k <test_myfunc>
+pytest test/<test-module.py> -vvv -s -k <test_myfunc>
 # e.g. pytest test/test_transforms.py -vvv -k test_center_crop
 ```
 
