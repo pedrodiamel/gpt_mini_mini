@@ -8,9 +8,6 @@ import torch.nn.functional as F
 
 from . import graphic as gph, netlearningrate, utils
 
-# LOCAL MODULES
-from .configs.hydra_config import Config
-
 # ----------------------------------------------------------------------------------------------
 # Neural Net Abstract Class
 
